@@ -13,18 +13,37 @@
         <div class="calendar_area">
             <div class="calendar_header">
               <p id="year_month_label"></p>
-
               <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
-
               <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
-
             </div>
             <div id="calendar_body"></div>
+            <div>
+                <table id="table">
+                    <tbody id="reviewArea">
+                        <tr class="trClass">
+                            <th>注文者名</th>
+                            <th>注文者電話</th>
+                            <th>注文者住所</th>
+                            <th>注文商品</th>
+                            <th>個数</th>
+                            <th>価格</th>
+                        </tr>
+            <% for (let i=0; i < sample3.length; i++) { %>
+                <tr class="trclass">
+                    <td><%- sample3[i].注文者名 %></td>
+                    <td><%- sample3[i].注文者電話 %></td>
+                    <td><%- sample3[i].注文者住所 %></td>
+                    <td><%- sample3[i].注文商品 %></td>
+                    <td><%- sample3[i].個数 %></td>
+                    <td><%- sample3[i].価格 %></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
     </body>
 </html>
 
 <script type="text/javascript">
- 
 // 曜日の定義
 const week = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -60,6 +79,8 @@ function showCalendar(date) {
   
   // カレンダー表示部分に埋め込み
   document.querySelector('#calendar_body').innerHTML = calendarTable;
+  console.log(year +" "+ month)
+
 }
 
 /**
@@ -131,6 +152,7 @@ function prev_month() {
   showDate.setMonth(showDate.getMonth() - 1);
   // カレンダーの表示（引数には表示用の日付を設定）
   showCalendar(showDate);
+
 }
 
 /**
@@ -141,6 +163,7 @@ function now_month() {
   showDate = new Date();
   // カレンダーの表示（引数には表示用の日付を設定）
   showCalendar(showDate);
+
 }
 
 /**
@@ -151,7 +174,18 @@ function next_month() {
   showDate.setMonth(showDate.getMonth() + 1);
   // カレンダーの表示（引数には表示用の日付を設定）
   showCalendar(showDate);
+
+
+
+
 }
 
 
+//ボタンが押された時入力される日付メモ
+//let withDate = document.querySelectorAll(".with_date")
+//console.log(withDate)
+//let month = document.getElementById("year_month_label")
+//
+// let date = document.querySelector(".with_date")
+// console.log(month.innerText + date.innerText)
 </script>

@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   });
 
   app.get("/", (req, res) => {
-    const sql = "SELECT 注文日付 FROM world.sample3 ?";
+    const sql = "SELECT 注文者名 FROM world.sample3 ";
     con.query(sql, [req.params.id], function (err, result, fields) {
       if (err) throw err;
       res.render("edit", {
