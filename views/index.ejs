@@ -17,7 +17,7 @@
               <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
             </div>
             <div id="calendar_body"></div>
-            <div>
+            <div id="dn">
                 <table id="table">
                     <tbody id="reviewArea">
                         <tr class="trClass">
@@ -29,11 +29,12 @@
                             <th>価格</th>
                         </tr>
             <% for (let i=0; i < sample3.length; i++) { %>
-                <tr class="trclass">
-                    <td><%- sample3[i].注文者名 %></td>
+                <tr id="trid">
+                    <td class="name"><%- sample3[i].注文者名 %></td>
                     <td><%- sample3[i].注文者電話 %></td>
                     <td><%- sample3[i].注文者住所 %></td>
                     <td><%- sample3[i].注文商品 %></td>
+                    <td class="time"><%- sample3[i].注文日付 %></td>
                     <td><%- sample3[i].個数 %></td>
                     <td><%- sample3[i].価格 %></td>
                 </tr>
@@ -44,6 +45,8 @@
 </html>
 
 <script type="text/javascript">
+let dn = document.querySelector("#dn")
+dn.style.display="none"
 // 曜日の定義
 const week = ["日", "月", "火", "水", "木", "金", "土"];
 
@@ -51,6 +54,7 @@ const week = ["日", "月", "火", "水", "木", "金", "土"];
 let today = new Date();
 
 // 表示用の日付
+
 let showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
 // 表示された時
@@ -79,10 +83,33 @@ function showCalendar(date) {
   
   // カレンダー表示部分に埋め込み
   document.querySelector('#calendar_body').innerHTML = calendarTable;
-  console.log(year +" "+ month)
+
+
+//日付取得メモ
+let time = document.querySelectorAll(".time")
+let name = document.querySelectorAll(".name")
+  let day = document.querySelector(".with_date")
+  let days = document.querySelectorAll(".with_date")
+ 
+  console.log(year +"-"+ month +"-" + day)
+  console.log(time[4].innerText)
+  console.log(showDate)
+  for(let c= 0 ; c < days.length ; c++){
+    //console.log(days[c].innerHTML)
+    let showDates = new Date(date.getFullYear(), date.getMonth(), days[c].innerHTML);
+  console.log(showDates)
+for(let i=0; i < time.length; i ++)
+if(time[i].innerText == showDates){
+    console.log(name[i].innerText)
+  days[c].innerHTML =days[c].innerText+"<br>"+"<button onclick='btnClick()' class='btn'>"+name[i].innerText+"</button>"
+}
+  }
 
 }
 
+function btnClick(){
+    alert("a")
+}
 /**
  * カレンダーテーブルの作成
  */
