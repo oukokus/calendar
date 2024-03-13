@@ -17,8 +17,6 @@
                 <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
             </div>
             <div id="calendar_body"></div>
-           <div id="dn">
-            <button id="openModal">モーダルを開く</button>
 <div id="modal" class="modal">
   <div class="modal-content">
                 <table id="table">
@@ -32,7 +30,7 @@
                             <th>価格</th>
                         </tr>
                         <% for (let i=0; i < sample3.length; i++) { %>
-                            <tr id="trid">
+                            <tr id="trid"   class="trc">
                                 <td class="name"><%- sample3[i].注文者名 %></td>
                                 <td><%- sample3[i].注文者電話 %></td>
                                 <td><%- sample3[i].注文者住所 %></td>
@@ -95,26 +93,55 @@
         let name = document.querySelectorAll(".name")
         let day = document.querySelector(".with_date")
         let days = document.querySelectorAll(".with_date")
-
-        console.log(year + "-" + month + "-" + day)
-        console.log(time[4].innerText)
-        console.log(showDate)
+       // console.log(time[4].innerText)
+       // console.log(showDate)
         for (let c = 0; c < days.length; c++) {
             //console.log(days[c].innerHTML)
             let showDates = new Date(date.getFullYear(), date.getMonth(), days[c].innerHTML);
           //  console.log(showDates)
             for (let i = 0; i < time.length; i++)
                 if (time[i].innerText == showDates) {
-                    console.log(name[i].innerText)
-                    days[c].innerHTML = days[c].innerText + "<br>" + "<button onclick='btnClick()' class='btn'>" + name[i].innerText + "</button>"
+                   // console.log(name[i].innerText)
+                    days[c].insertAdjacentHTML("beforeend","<br>" + "<button onclick='btnClick("+[i]+")'  id='"+[i]+"'   class='clBtn' name='btname' >" + name[i].innerText + "</button>")
                 }
         }
 
     }
+    
 
-    function btnClick() {
-        document.getElementById('modal').style.display = 'block';
-   }
+    const cl = document.querySelectorAll(".clBtn");
+    const btnames = document.getElementsByName("btname")
+//console.log(btnames.item(0))
+
+
+let trc = document.querySelectorAll(".trc")
+let cn = document.querySelectorAll('.name')
+let times = document.querySelectorAll(".time")
+console.log(cn)
+  console.log(trc[6])
+
+
+function btnClick(bt){
+        for(let i = 0 ; i < cn.length; i++){
+            times[i].style.display = 'none';
+            trc[i].style.display ='none';
+           // console.log(trc[i].innerHTML)
+           // console.log(cn[i].innerHTML)
+           // console.log(trc[i].children[0].innerHTML)
+           // console.log(btnames.item(i).id)
+           // console.log(btnames)
+            let modal = document.getElementById('modal')
+      //  console.log(modal)
+  if(bt == btnames.item(i).id) {
+    console.log(btnames.item(i).id)
+    modal.style.display = 'block';
+  
+    trc[bt].style.display ='block';
+  
+    
+    }
+}
+}
 //document.getElementById('openModal').addEventListener('click', function() {
 // document.getElementById('modal').style.display = 'block';
 //});
