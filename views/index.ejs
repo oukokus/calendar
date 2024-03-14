@@ -116,6 +116,10 @@
 
     const cl = document.querySelectorAll(".clBtn");
     const btnames = document.getElementsByName("btname")
+  
+    console.log(btnames);
+   
+
 //console.log(btnames.item(0))
 let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
 console.log(userList[1])
@@ -135,8 +139,9 @@ function btnClick(bt){
             let modal = document.getElementById('modal')
             modal.style.display = 'block';
             trc[i].style.display ='none';
+           // console.log(trc[i])
+           trc[bt].style.display='table-row'
     //tbodyId.style.display ='none';
-        }
     // console.log(trc[i]);
 //   trc[6].style.display='table-row'
    //console.log(trc[i])
@@ -146,20 +151,39 @@ function btnClick(bt){
            // console.log(btnames.item(i).id)
            // console.log(btnames)
       //  console.log(modal)
-      for(let c = 0 ; c < trc.length; c++){
-  if(bt == btnames.item(c).id) {
-    // console.log(trc[bt])
-    console.log(trc[0].style.display)
-    console.log(trc[5].style.display)
-    console.log(bt);
-   
+      console.log(btnames.item(2).id) //i=4 i=2
+      console.log(bt) //m 0  fr=5
+      //if(0 == btnames.item(4).id) {
+     //   if(bt == btnames.item(4).id) {
+       // console.log(trc[7])
+        //console.log(btnames.item(i).id)
+        //console.log(bt)
+       
+   // console.log(btnames[i]);
+   //  console.log(trc[i])
+   //  console.log( trc[bt])
  
-   trc[bt].style.display='table-row'
-   console.log(trc[bt])
-   console.log("ok")
- //console.log(btnames.item(i).id)
-    }
-}
+  // console.log(trc[5])
+  // console.log(trc[bt].style.display)
+ 
+    
+
+        }
+//      for(let c = 0 ; c < trc.length; c++){
+//  if(bt == btnames.item(c).id) {
+//    // console.log(trc[bt])
+//    //console.log(trc[0].style.display)
+//    //console.log(trc[5].style.display)
+//    console.log(btnames[c]);
+//   
+// 
+//   trc[bt].style.display='table-row'
+//   //console.log(  trc[bt])
+//   console.log(btnames);
+//   //console.log("ok")
+// //console.log(btnames.item(i).id)
+//    }
+//}
 }
 document.getElementById('modal').addEventListener('click', function() {
   this.style.display = 'none';
