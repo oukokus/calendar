@@ -86,7 +86,7 @@
         let days = document.querySelectorAll(".with_date")
         for (let c = 0; c < days.length; c++) {
             let showDates = new Date(date.getFullYear(), date.getMonth(), days[c].innerHTML);
-            for (let i = 0; i < time.length; i++)
+            for (let i = 0; i < time.length; i++){
                 if (time[i].innerText == showDates) {
                     days[c].insertAdjacentHTML("beforeend", "<br>" + "<button onclick='btnClick(" + [i] + ")'  id='" + [i] + "' class='clBtn'>" + name[i].innerText + "</button>")
                 }
