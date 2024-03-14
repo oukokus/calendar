@@ -20,7 +20,7 @@
 <div id="modal" class="modal">
   <div class="modal-content">
                 <table id="table">
-                    <tbody id="reviewArea">
+                    <thead id="reviewArea">
                         <tr class="trClass">
                             <th>注文者名</th>
                             <th>注文者電話</th>
@@ -29,8 +29,10 @@
                             <th>個数</th>
                             <th>価格</th>
                         </tr>
+                        </thead>
+                        <tbody id="tbodyId">
                         <% for (let i=0; i < sample3.length; i++) { %>
-                            <tr id="trid"   class="trc">
+                            <tr class="trc">
                                 <td class="name"><%- sample3[i].注文者名 %></td>
                                 <td><%- sample3[i].注文者電話 %></td>
                                 <td><%- sample3[i].注文者住所 %></td>
@@ -39,7 +41,10 @@
                                 <td><%- sample3[i].個数 %></td>
                                 <td><%- sample3[i].価格 %></td>
                             </tr>
+                          
                             <% } %>
+                        </tbody>
+                       
                     </tbody>
                 </table>
             </div>
@@ -112,43 +117,54 @@
     const cl = document.querySelectorAll(".clBtn");
     const btnames = document.getElementsByName("btname")
 //console.log(btnames.item(0))
-
+let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
+console.log(userList[1])
 
 let trc = document.querySelectorAll(".trc")
+
 let cn = document.querySelectorAll('.name')
 let times = document.querySelectorAll(".time")
-console.log(cn)
-  console.log(trc[6])
+// console.log(cn)
+//   console.log(trc[6])
 
+let tbodyId =document.querySelector("#tbodyId")
 
 function btnClick(bt){
-        for(let i = 0 ; i < cn.length; i++){
-            times[i].style.display = 'none';
+        for(let i = 0 ; i < trc.length; i++){
+           times[i].style.display = 'none';
+            let modal = document.getElementById('modal')
+            modal.style.display = 'block';
             trc[i].style.display ='none';
-           // console.log(trc[i].innerHTML)
+    //tbodyId.style.display ='none';
+        }
+    // console.log(trc[i]);
+//   trc[6].style.display='table-row'
+   //console.log(trc[i])
+            //console.log(trc[i].innerHTML)
            // console.log(cn[i].innerHTML)
            // console.log(trc[i].children[0].innerHTML)
            // console.log(btnames.item(i).id)
            // console.log(btnames)
-            let modal = document.getElementById('modal')
       //  console.log(modal)
-  if(bt == btnames.item(i).id) {
-    console.log(btnames.item(i).id)
-    modal.style.display = 'block';
-  
-    trc[bt].style.display ='block';
-  
-    
+      for(let c = 0 ; c < trc.length; c++){
+  if(bt == btnames.item(c).id) {
+    // console.log(trc[bt])
+    console.log(trc[0].style.display)
+    console.log(trc[5].style.display)
+    console.log(bt);
+   
+ 
+   trc[bt].style.display='table-row'
+   console.log(trc[bt])
+   console.log("ok")
+ //console.log(btnames.item(i).id)
     }
 }
 }
-//document.getElementById('openModal').addEventListener('click', function() {
-// document.getElementById('modal').style.display = 'block';
-//});
-//
 document.getElementById('modal').addEventListener('click', function() {
   this.style.display = 'none';
 });
+
     /**
      * カレンダーテーブルの作成
      */
@@ -240,18 +256,5 @@ document.getElementById('modal').addEventListener('click', function() {
         showDate.setMonth(showDate.getMonth() + 1);
         // カレンダーの表示（引数には表示用の日付を設定）
         showCalendar(showDate);
-
-
-
-
     }
-
-
-    //ボタンが押された時入力される日付メモ
-    //let withDate = document.querySelectorAll(".with_date")
-    //console.log(withDate)
-    //let month = document.getElementById("year_month_label")
-    //
-    // let date = document.querySelector(".with_date")
-    // console.log(month.innerText + date.innerText)
 </script>
