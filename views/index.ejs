@@ -17,54 +17,47 @@
                 <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
             </div>
             <div id="calendar_body"></div>
-<div id="modal" class="modal">
-  <div class="modal-content">
-                <table id="table">
-                    <thead id="reviewArea">
-                        <tr class="trClass">
-                            <th>注文者名</th>
-                            <th>注文者電話</th>
-                            <th>注文者住所</th>
-                            <th>注文商品</th>
-                            <th>個数</th>
-                            <th>価格</th>
-                        </tr>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <table id="table">
+                        <thead id="reviewArea">
+                            <tr class="trClass">
+                                <th>注文者名</th>
+                                <th>注文者電話</th>
+                                <th>注文者住所</th>
+                                <th>注文商品</th>
+                                <th>個数</th>
+                                <th>価格</th>
+                            </tr>
                         </thead>
                         <tbody id="tbodyId">
-                        <% for (let i=0; i < sample3.length; i++) { %>
-                            <tr class="trc">
-                                <td class="name"><%- sample3[i].注文者名 %></td>
-                                <td><%- sample3[i].注文者電話 %></td>
-                                <td><%- sample3[i].注文者住所 %></td>
-                                <td><%- sample3[i].注文商品 %></td>
-                                <td class="time"><%- sample3[i].注文日付 %></td>
-                                <td><%- sample3[i].個数 %></td>
-                                <td><%- sample3[i].価格 %></td>
-                            </tr>
-                          
-                            <% } %>
+                            <% for (let i=0; i < sample3.length; i++) { %>
+                                <tr class="tbodyTr">
+                                    <td class="name"><%- sample3[i].注文者名 %></td>
+                                    <td><%- sample3[i].注文者電話 %></td>
+                                    <td><%- sample3[i].注文者住所 %></td>
+                                    <td><%- sample3[i].注文商品 %></td>
+                                    <td class="time"><%- sample3[i].注文日付 %></td>
+                                    <td><%- sample3[i].個数 %></td>
+                                    <td><%- sample3[i].価格 %></td>
+                                </tr>
+                                <% } %>
                         </tbody>
-                       
-                    </tbody>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
-            </div>
         </div>
     </body>
 </html>
-<script type="text/javascript">
 
+<script type="text/javascript">
     // 曜日の定義
     const week = ["日", "月", "火", "水", "木", "金", "土"];
-
     // 今日の日付
     let today = new Date();
-
     // 表示用の日付
-
     let showDate = new Date(today.getFullYear(), today.getMonth(), 1);
-
     // 表示された時
     window.onload = function () {
         // カレンダーの表示（引数には表示用の日付を設定）
@@ -79,115 +72,41 @@
         let year = date.getFullYear();
         // 月
         let month = date.getMonth() + 1;
-
         // ヘッダーの年月に表示する文字列
         let showDateStr = year + "年 " + month + "月";
-
         // ヘッダーの年月部分に埋め込み
         document.querySelector('#year_month_label').innerHTML = showDateStr;
-
         // カレンダーテーブルを作成する（HTMLが返却される）
         let calendarTable = createCalendarTable(year, month);
-
         // カレンダー表示部分に埋め込み
         document.querySelector('#calendar_body').innerHTML = calendarTable;
-
-
         //日付取得メモ
         let time = document.querySelectorAll(".time")
         let name = document.querySelectorAll(".name")
-        let day = document.querySelector(".with_date")
         let days = document.querySelectorAll(".with_date")
-       // console.log(time[4].innerText)
-       // console.log(showDate)
         for (let c = 0; c < days.length; c++) {
-            //console.log(days[c].innerHTML)
             let showDates = new Date(date.getFullYear(), date.getMonth(), days[c].innerHTML);
-          //  console.log(showDates)
             for (let i = 0; i < time.length; i++)
                 if (time[i].innerText == showDates) {
-                   // console.log(name[i].innerText)
-                    days[c].insertAdjacentHTML("beforeend","<br>" + "<button onclick='btnClick("+[i]+")'  id='"+[i]+"'   class='clBtn' name='btname' >" + name[i].innerText + "</button>")
+                    days[c].insertAdjacentHTML("beforeend", "<br>" + "<button onclick='btnClick(" + [i] + ")'  id='" + [i] + "'>" + name[i].innerText + "</button>")
                 }
         }
-
     }
-    
 
-    const cl = document.querySelectorAll(".clBtn");
-    const btnames = document.getElementsByName("btname")
-  
-    console.log(btnames);
-   
-
-//console.log(btnames.item(0))
-let userList = JSON.parse('<%= JSON.stringify(users) %>'.replace(/&#34;/g, '"'));
-console.log(userList[1])
-
-let trc = document.querySelectorAll(".trc")
-
-let cn = document.querySelectorAll('.name')
-let times = document.querySelectorAll(".time")
-// console.log(cn)
-//   console.log(trc[6])
-
-let tbodyId =document.querySelector("#tbodyId")
-
-function btnClick(bt){
-        for(let i = 0 ; i < trc.length; i++){
-           times[i].style.display = 'none';
-            let modal = document.getElementById('modal')
+    let tbodyTr = document.querySelectorAll(".tbodyTr")
+    let time = document.querySelectorAll(".time")
+    let modal = document.getElementById('modal')
+    function btnClick(btn) {
+        for (let i = 0; i < tbodyTr.length; i++) {
+            time[i].style.display = 'none';
             modal.style.display = 'block';
-            trc[i].style.display ='none';
-           // console.log(trc[i])
-           trc[bt].style.display='table-row'
-    //tbodyId.style.display ='none';
-    // console.log(trc[i]);
-//   trc[6].style.display='table-row'
-   //console.log(trc[i])
-            //console.log(trc[i].innerHTML)
-           // console.log(cn[i].innerHTML)
-           // console.log(trc[i].children[0].innerHTML)
-           // console.log(btnames.item(i).id)
-           // console.log(btnames)
-      //  console.log(modal)
-      console.log(btnames.item(2).id) //i=4 i=2
-      console.log(bt) //m 0  fr=5
-      //if(0 == btnames.item(4).id) {
-     //   if(bt == btnames.item(4).id) {
-       // console.log(trc[7])
-        //console.log(btnames.item(i).id)
-        //console.log(bt)
-       
-   // console.log(btnames[i]);
-   //  console.log(trc[i])
-   //  console.log( trc[bt])
- 
-  // console.log(trc[5])
-  // console.log(trc[bt].style.display)
- 
-    
-
+            tbodyTr[i].style.display = 'none';
+            tbodyTr[btn].style.display = 'table-row'
         }
-//      for(let c = 0 ; c < trc.length; c++){
-//  if(bt == btnames.item(c).id) {
-//    // console.log(trc[bt])
-//    //console.log(trc[0].style.display)
-//    //console.log(trc[5].style.display)
-//    console.log(btnames[c]);
-//   
-// 
-//   trc[bt].style.display='table-row'
-//   //console.log(  trc[bt])
-//   console.log(btnames);
-//   //console.log("ok")
-// //console.log(btnames.item(i).id)
-//    }
-//}
-}
-document.getElementById('modal').addEventListener('click', function() {
-  this.style.display = 'none';
-});
+    }
+    document.getElementById('modal').addEventListener('click', function () {
+        this.style.display = 'none';
+    });
 
     /**
      * カレンダーテーブルの作成
@@ -195,32 +114,24 @@ document.getElementById('modal').addEventListener('click', function() {
     function createCalendarTable(year, month) {
         // HTML用の変数
         let _html = '';
-
         // tableタグ
         _html += '<table class="calendar_tbl">';
-
         // テーブルのヘッダー（曜日）
         _html += '<tr>';
         for (let i = 0; i < week.length; i++) {
             _html += "<th>" + week[i] + "</th>";
         }
         _html += '</tr>';
-
         // ---------------------
-
         // 表示するカレンダー年月の1日の曜日を取得
         let startDayOfWeek = new Date(year, month - 1, 1).getDay();
-
         // 日付
         let countDay = 0;
-
         // 月の末日
         let monthOfEndDay = new Date(year, month, 0).getDate()
-
         // 6行分繰り返し
         for (let i = 0; i < 6; i++) {
             _html += '<tr>';
-
             // 7列（曜日の数）分繰り返し
             for (let j = 0; j < week.length; j++) {
                 // １行目で開始曜日と同じ場合
@@ -245,7 +156,6 @@ document.getElementById('modal').addEventListener('click', function() {
             _html += '</tr>';
         }
         _html += '</table>';
-
         // 組み立てたHTMLを返却
         return _html;
     }
@@ -258,9 +168,7 @@ document.getElementById('modal').addEventListener('click', function() {
         showDate.setMonth(showDate.getMonth() - 1);
         // カレンダーの表示（引数には表示用の日付を設定）
         showCalendar(showDate);
-
     }
-
     /**
      * 今日
      */
