@@ -12,146 +12,236 @@
         <h1>商品注文顧客管理システム</h1>
         <div class="calendar_area">
             <div class="calendar_header">
-              <p id="year_month_label"></p>
-
-              <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
-
-              <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
-
+                <p id="year_month_label"></p>
+                <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
+                <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
             </div>
             <div id="calendar_body"></div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <table class="table">
+                        <thead id="reviewArea">
+                            <tr class="trClass">
+                                <th>注文者名</th>
+                                <th>注文者電話</th>
+                                <th>注文者住所</th>
+                                <th>注文商品</th>
+                                <th>個数</th>
+                                <th>価格</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyId">
+                            <% for (let i=0; i < sample3.length; i++) { %>
+                                <tr class="tbodyTr">
+                                    <td class="name"><%- sample3[i].注文者名 %></td>
+                                    <td><%- sample3[i].注文者電話 %></td>
+                                    <td><%- sample3[i].注文者住所 %></td>
+                                    <td><%- sample3[i].注文商品 %></td>
+                                    <td class="time"><%- sample3[i].注文日付 %></td>
+                                    <td><%- sample3[i].個数 %></td>
+                                    <td><%- sample3[i].価格 %></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="list">
+            <table id="tableList">
+                <h2>商品注文顧客管理リスト</h2>
+                <thead>
+                    <tr>
+                        <th>注文者名</th>
+                        <th>注文者電話</th>
+                        <th>注文者住所</th>
+                        <th>注文商品</th>
+                        <th>注文日付</th>
+                        <th>個数</th>
+                        <th>価格</th>
+                    </tr>
+                </thead>
+                <tbody id=tbodyList>
+                    <% for (let i=0; i < sample3.length; i++) { %>
+                        <tr class="trList">
+                            <td><%- sample3[i].注文者名 %></td>
+                            <td><%- sample3[i].注文者電話 %></td>
+                            <td><%- sample3[i].注文者住所 %></td>
+                            <td><%- sample3[i].注文商品 %></td>
+                            <td class="listTime"><%- sample3[i].注文日付 %></td>
+                            <td><%- sample3[i].個数 %></td>
+                            <td><%- sample3[i].価格 %></td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        </div>
     </body>
 </html>
-
 <script type="text/javascript">
- 
-// 曜日の定義
-const week = ["日", "月", "火", "水", "木", "金", "土"];
+    // 曜日の定義
+    const week = ["日", "月", "火", "水", "木", "金", "土"];
+    // 今日の日付
+    let today = new Date();
+    // 表示用の日付
+    let showDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    // 表示された時
+    window.onload = function () {
+        // カレンダーの表示（引数には表示用の日付を設定）
+        showCalendar(showDate);
+    };
 
-// 今日の日付
-let today = new Date();
+    /**
+     * カレンダーの表示
+     */
+    function showCalendar(date) {
+        // 年
+        let year = date.getFullYear();
+        // 月
+        let month = date.getMonth() + 1;
+        // ヘッダーの年月に表示する文字列
+        let showDateStr = year + "年 " + month + "月";
+        // ヘッダーの年月部分に埋め込み
+        document.querySelector('#year_month_label').innerHTML = showDateStr;
+        // カレンダーテーブルを作成する（HTMLが返却される）
+        let calendarTable = createCalendarTable(year, month);
+        // カレンダー表示部分に埋め込み
+        document.querySelector('#calendar_body').innerHTML = calendarTable;
 
-// 表示用の日付
-let showDate = new Date(today.getFullYear(), today.getMonth(), 1);
 
-// 表示された時
-window.onload = function () {
-  // カレンダーの表示（引数には表示用の日付を設定）
-  showCalendar(showDate);
-};
+//商品注文顧客管理リスト
+        //月によって表示
+        let getTrList = document.querySelectorAll(".trList")
+        let getTableList = document.querySelector('#tableList')
+        let getListTime = document.querySelectorAll('.listTime')
+        console.log(getListTime)
+        for (let i = 0; i < getListTime.length; i++) {
+            getTrList[i].style.display = 'none';
+            let listMonth1 = getListTime[i].innerHTML.slice(0, 7)
+            let listMonth2 = year + "-" + ("0" + (month))
+            if (listMonth1 == listMonth2) {
+                getTrList[i].style.display = 'table-row'
+            }
+        }
+             //空の行を削除
+     for (let i = 0; i < getTrList.length; i++){
+            if (getTrList[i].childNodes.item(1).innerText == "") {
+                getTrList[i].remove()
+            }
+        }
 
-/**
- * カレンダーの表示
- */
-function showCalendar(date) {
-  // 年
-  let year = date.getFullYear();
-  // 月
-  let month = date.getMonth() + 1;
-  
-  // ヘッダーの年月に表示する文字列
-  let showDateStr = year + "年 " + month + "月";
-  
-  // ヘッダーの年月部分に埋め込み
-  document.querySelector('#year_month_label').innerHTML = showDateStr;
-  
-  // カレンダーテーブルを作成する（HTMLが返却される）
-  let calendarTable = createCalendarTable(year, month);
-  
-  // カレンダー表示部分に埋め込み
-  document.querySelector('#calendar_body').innerHTML = calendarTable;
-}
 
-/**
- * カレンダーテーブルの作成
- */
-function createCalendarTable(year, month) {
-  // HTML用の変数
-  let _html = '';
-  
-  // tableタグ
-  _html += '<table class="calendar_tbl">';
-  
-  // テーブルのヘッダー（曜日）
-  _html += '<tr>';
-  for (let i = 0; i < week.length; i++) {
-    _html += "<th>" + week[i] + "</th>";
-  }
-  _html += '</tr>';
-  
-  // ---------------------
-  
-  // 表示するカレンダー年月の1日の曜日を取得
-  let startDayOfWeek = new Date(year, month - 1, 1).getDay();
-  
-  // 日付
-  let countDay = 0;
-  
-  // 月の末日
-  let monthOfEndDay = new Date(year, month, 0).getDate()
-  
-  // 6行分繰り返し
-  for (let i = 0; i < 6; i++) {
-    _html += '<tr>';
-    
-    // 7列（曜日の数）分繰り返し
-    for (let j = 0; j < week.length; j++) {
-      // １行目で開始曜日と同じ場合
-      if (i == 0 && j == startDayOfWeek) {
-        // 日付+1
-        countDay++;
-        // tdタグ（日付有りが分かるようにクラス属性に"with_date"を設定）
-        _html += '<td class="with_date">' + countDay + '</td>';
-      }
-      // 日付が0以外で、日付が末日より小さい場合
-      else if (countDay != 0 && countDay < monthOfEndDay) {
-        // 日付+1
-        countDay++;
-        // tdタグ（日付有りが分かるようにクラス属性に"with_date"を設定）
-        _html += '<td class="with_date">' + countDay + '</td>';
-      }
-      else {
-        // tdタグ（日付無しが分かるようにクラス属性に"no_date"を設定）
-        _html += '<td class="no_date"></td>';
-      }
+        //カレンダーに表示
+        let time = document.querySelectorAll(".time")
+        let name = document.querySelectorAll(".name")
+        let day = document.querySelectorAll(".with_date")
+        for (let i = 0; i < time.length; i++) {
+            let month1 = time[i].innerHTML.slice(0, 7)
+            let month2 = year + "-" + ("0" + (month))
+            let days = time[i].innerHTML.slice(-2) - 1
+            if (month1 == month2)
+                day[days].insertAdjacentHTML("beforeend", "<br>" + "<button onclick='btnClick(" + [i] + ")'  id='" + [i] + "' class='clBtn'>" + name[i].innerText + "</button>")
+        }
     }
-    _html += '</tr>';
-  }
-  _html += '</table>';
-  
-  // 組み立てたHTMLを返却
-  return _html;
-}
 
-/**
- * 前月
- */
-function prev_month() {
-  // 表示用の日付の月-1を設定
-  showDate.setMonth(showDate.getMonth() - 1);
-  // カレンダーの表示（引数には表示用の日付を設定）
-  showCalendar(showDate);
-}
-
-/**
- * 今日
- */
-function now_month() {
-  // 表示用の日付に今日の日付を設定
-  showDate = new Date();
-  // カレンダーの表示（引数には表示用の日付を設定）
-  showCalendar(showDate);
-}
-
-/**
- * 来月
- */
-function next_month() {
-  // 表示用の日付の月+1を設定
-  showDate.setMonth(showDate.getMonth() + 1);
-  // カレンダーの表示（引数には表示用の日付を設定）
-  showCalendar(showDate);
-}
+    //ポップアップの表示
+    let tbodyTr = document.querySelectorAll(".tbodyTr")
+    let time = document.querySelectorAll(".time")
+    let modal = document.getElementById('modal')
+    function btnClick(btn) {
+        for (let i = 0; i < tbodyTr.length; i++) {
+            time[i].style.display = 'none';
+            modal.style.display = 'block';
+            tbodyTr[i].style.display = 'none';
+            tbodyTr[btn].style.display = 'table-row'
+        }
+    }
+    document.getElementById('modal').addEventListener('click', function () {
+        this.style.display = 'none';
+    });
 
 
+
+    /**
+     * カレンダーテーブルの作成
+     */
+    function createCalendarTable(year, month) {
+        // HTML用の変数
+        let _html = '';
+        // tableタグ
+        _html += '<table class="calendar_tbl">';
+        // テーブルのヘッダー（曜日）
+        _html += '<tr>';
+        for (let i = 0; i < week.length; i++) {
+            _html += "<th>" + week[i] + "</th>";
+        }
+        _html += '</tr>';
+        // ---------------------
+        // 表示するカレンダー年月の1日の曜日を取得
+        let startDayOfWeek = new Date(year, month - 1, 1).getDay();
+        // 日付
+        let countDay = 0;
+        // 月の末日
+        let monthOfEndDay = new Date(year, month, 0).getDate()
+        // 6行分繰り返し
+        for (let i = 0; i < 6; i++) {
+            _html += '<tr>';
+            // 7列（曜日の数）分繰り返し
+            for (let j = 0; j < week.length; j++) {
+                // １行目で開始曜日と同じ場合
+                if (i == 0 && j == startDayOfWeek) {
+                    // 日付+1
+                    countDay++;
+                    // tdタグ（日付有りが分かるようにクラス属性に"with_date"を設定）
+                    _html += '<td class="with_date">' + countDay + '</td>';
+                }
+                // 日付が0以外で、日付が末日より小さい場合
+                else if (countDay != 0 && countDay < monthOfEndDay) {
+                    // 日付+1
+                    countDay++;
+                    // tdタグ（日付有りが分かるようにクラス属性に"with_date"を設定）
+                    _html += '<td class="with_date">' + countDay + '</td>';
+                }
+                else {
+                    // tdタグ（日付無しが分かるようにクラス属性に"no_date"を設定）
+                    _html += '<td class="no_date"></td>';
+                }
+            }
+            _html += '</tr>';
+        }
+        _html += '</table>';
+        // 組み立てたHTMLを返却
+        return _html;
+    }
+
+    /**
+     * 前月
+     */
+    function prev_month() {
+        // 表示用の日付の月-1を設定
+        showDate.setMonth(showDate.getMonth() - 1);
+        // カレンダーの表示（引数には表示用の日付を設定）
+        showCalendar(showDate);
+    }
+    /**
+     * 今日
+     */
+    function now_month() {
+        // 表示用の日付に今日の日付を設定
+        showDate = new Date();
+        // カレンダーの表示（引数には表示用の日付を設定）
+        showCalendar(showDate);
+
+    }
+
+    /**
+     * 来月
+     */
+    function next_month() {
+        // 表示用の日付の月+1を設定
+        showDate.setMonth(showDate.getMonth() + 1);
+        // カレンダーの表示（引数には表示用の日付を設定）
+        showCalendar(showDate);
+    }
 </script>

@@ -1,0 +1,57 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for macos13 (arm64)
+--
+-- Host: localhost    Database: world
+-- ------------------------------------------------------
+-- Server version	8.2.0
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `sample3`
+--
+
+DROP TABLE IF EXISTS `sample3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sample3` (
+  `注文No` int NOT NULL AUTO_INCREMENT,
+  `注文者名` varchar(20) DEFAULT NULL,
+  `注文者電話` varchar(30) DEFAULT NULL,
+  `注文者住所` varchar(70) DEFAULT NULL,
+  `注文日付` date DEFAULT NULL,
+  `注文商品` varchar(30) DEFAULT NULL,
+  `個数` int DEFAULT NULL,
+  `価格` int DEFAULT NULL,
+  PRIMARY KEY (`注文No`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sample3`
+--
+
+LOCK TABLES `sample3` WRITE;
+/*!40000 ALTER TABLE `sample3` DISABLE KEYS */;
+INSERT INTO `sample3` VALUES (1,'松田 雄介','090-1232-3234','東京都・・','2024-02-20','電動歯ブラシ',1,28000),(2,'佐藤 公彦','080-7463-1194','静岡県・・','2024-02-21','電動歯ブラシ',2,1000),(3,'佐藤 公彦','080-7463-1194','静岡県・・','2024-02-21','テレビ',1,100000),(4,'松田 雄介','090-1232-3234','東京都・・','2024-02-22','リモコン',1,500),(5,'清水 圭太','090-8573-0912','福岡県・・','2024-02-25','電動歯ブラシ',2,56000),(6,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(7,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(8,'あいうえお','0120-111-111','東京','2024-02-01','テレビ',10,100000),(9,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(10,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `sample3` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-03-14 16:15:22
