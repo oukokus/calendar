@@ -80,19 +80,19 @@
         let calendarTable = createCalendarTable(year, month);
         // カレンダー表示部分に埋め込み
         document.querySelector('#calendar_body').innerHTML = calendarTable;
-        //日付取得メモ
+        //日付取得
         let time = document.querySelectorAll(".time")
         let name = document.querySelectorAll(".name")
-        let days = document.querySelectorAll(".with_date")
-        for (let c = 0; c < days.length; c++) {
-            let showDates = new Date(date.getFullYear(), date.getMonth(), days[c].innerHTML);
-            for (let i = 0; i < time.length; i++){
-                if (time[i].innerText == showDates) {
-                    days[c].insertAdjacentHTML("beforeend", "<br>" + "<button onclick='btnClick(" + [i] + ")'  id='" + [i] + "' class='clBtn'>" + name[i].innerText + "</button>")
-                }
+        let day = document.querySelectorAll(".with_date")
+          for (let i = 0; i < time.length; i++){
+              let month1= time[i].innerHTML.slice(0,7)
+              let month2 = year + "-" +  ("0"+(month))
+              let days = time[i].innerHTML.slice(-2)-1
+            if(month1 == month2)
+                  day[days].insertAdjacentHTML("beforeend", "<br>" + "<button onclick='btnClick(" + [i] + ")'  id='" + [i] + "' class='clBtn'>" + name[i].innerText + "</button>")
+            }
         }
-    }
-
+    
     let tbodyTr = document.querySelectorAll(".tbodyTr")
     let time = document.querySelectorAll(".time")
     let modal = document.getElementById('modal')

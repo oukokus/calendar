@@ -13,6 +13,7 @@ const con = mysql.createConnection({
   user: "root",
   password: "rootroot",
   database: "world",
+  dateStrings: 'date' 
 });
 
 // mysqlからデータを持ってくる
