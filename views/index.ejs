@@ -19,7 +19,7 @@
             <div id="calendar_body"></div>
             <div id="modal" class="modal">
                 <div class="modal-content">
-                    <table id="table">
+                    <table class="table">
                         <thead id="reviewArea">
                             <tr class="trClass">
                                 <th>注文者名</th>
@@ -46,6 +46,35 @@
                     </table>
                 </div>
             </div>
+        </div>
+<div id="list">
+        <table id="tableList">
+            <h2>商品注文顧客管理リスト</h2>
+            <thead>
+                <tr>
+                    <th>注文者名</th>
+                    <th>注文者電話</th>
+                    <th>注文者住所</th>
+                    <th>注文商品</th>
+                <th>注文日付</th>
+                    <th>個数</th>
+                    <th>価格</th>
+                </tr>
+            </thead>
+            <tbody id =tbodyList>
+                <% for (let i=0; i < sample3.length; i++) { %>
+                    <tr class="trList">
+                        <td><%- sample3[i].注文者名 %></td>
+                        <td><%- sample3[i].注文者電話 %></td>
+                        <td><%- sample3[i].注文者住所 %></td>
+                        <td><%- sample3[i].注文商品 %></td>
+                        <td><%- sample3[i].注文日付 %></td>
+                        <td><%- sample3[i].個数 %></td>
+                        <td><%- sample3[i].価格 %></td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
         </div>
         </div>
     </body>
@@ -80,7 +109,7 @@
         let calendarTable = createCalendarTable(year, month);
         // カレンダー表示部分に埋め込み
         document.querySelector('#calendar_body').innerHTML = calendarTable;
-        //日付取得
+        //日付
         let time = document.querySelectorAll(".time")
         let name = document.querySelectorAll(".name")
         let day = document.querySelectorAll(".with_date")
@@ -108,6 +137,17 @@
         this.style.display = 'none';
     });
 
+//商品注文顧客管理リスト
+//空の行を削除
+let getTrList = document.querySelectorAll(".trList")
+for(let i=0; i<getTrList.length ; i++)
+if(getTrList[i].childNodes.item(1).innerText == ""){
+    getTrList[i].remove()
+}
+
+
+
+    
     /**
      * カレンダーテーブルの作成
      */
