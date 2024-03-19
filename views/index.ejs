@@ -10,76 +10,76 @@
     </head>
     <body>
         <h1>商品注文顧客管理システム</h1>
-        <div id="app"> 
-        <div class="calendar_area">
-            <div class="calendar_header">
-                <p id="year_month_label"></p>
-                <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
-                <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
-            </div>
-            <div id="calendar_body"></div>
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <table class="table">
-                        <thead id="reviewArea">
-                            <tr class="trClass">
-                                <th>注文者名</th>
-                                <th>注文者電話</th>
-                                <th>注文者住所</th>
-                                <th>注文商品</th>
-                                <th>個数</th>
-                                <th>価格</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbodyId">
-                            <% for (let i=0; i < sample3.length; i++) { %>
-                                <tr class="tbodyTr">
-                                    <td class="name"><%- sample3[i].注文者名 %></td>
-                                    <td><%- sample3[i].注文者電話 %></td>
-                                    <td><%- sample3[i].注文者住所 %></td>
-                                    <td><%- sample3[i].注文商品 %></td>
-                                    <td class="time"><%- sample3[i].注文日付 %></td>
-                                    <td><%- sample3[i].個数 %></td>
-                                    <td><%- sample3[i].価格 %></td>
+        <div id="app">
+            <div class="calendar_area">
+                <div class="calendar_header">
+                    <p id="year_month_label"></p>
+                    <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
+                    <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
+                </div>
+                <div id="calendar_body"></div>
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <table class="table">
+                            <thead id="reviewArea">
+                                <tr class="trClass">
+                                    <th>注文者名</th>
+                                    <th>注文者電話</th>
+                                    <th>注文者住所</th>
+                                    <th>注文商品</th>
+                                    <th>個数</th>
+                                    <th>価格</th>
                                 </tr>
-                                <% } %>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody id="tbodyId">
+                                <% for (let i=0; i < sample3.length; i++) { %>
+                                    <tr class="tbodyTr">
+                                        <td class="name"><%- sample3[i].注文者名 %></td>
+                                        <td><%- sample3[i].注文者電話 %></td>
+                                        <td><%- sample3[i].注文者住所 %></td>
+                                        <td><%- sample3[i].注文商品 %></td>
+                                        <td class="time"><%- sample3[i].注文日付 %></td>
+                                        <td><%- sample3[i].個数 %></td>
+                                        <td><%- sample3[i].価格 %></td>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="list">
-            <table id="tableList">
-                <h2>商品注文顧客管理リスト</h2>
-                <button id="addBtn"><a href="/add">情報追加</a></button>
-                <thead>
-                    <tr>
-                        <th>注文者名</th>
-                        <th>注文者電話</th>
-                        <th>注文者住所</th>
-                        <th>注文商品</th>
-                        <th>注文日付</th>
-                        <th>個数</th>
-                        <th>価格</th>
-                    </tr>
-                </thead>
-                <tbody id=tbodyList>
-                    <% for (let i=0; i < sample3.length; i++) { %>
-                        <tr class="trList">
-                            <td><%- sample3[i].注文者名 %></td>
-                            <td><%- sample3[i].注文者電話 %></td>
-                            <td><%- sample3[i].注文者住所 %></td>
-                            <td><%- sample3[i].注文商品 %></td>
-                            <td class="listTime"><%- sample3[i].注文日付 %></td>
-                            <td><%- sample3[i].個数 %></td>
-                            <td><%- sample3[i].価格 %></td>
+            <div id="list">
+                <table id="tableList">
+                    <h2>商品注文顧客管理リスト</h2>
+                    <button id="addBtn"><a href="/add">情報追加</a></button>
+                    <thead>
+                        <tr>
+                            <th>注文者名</th>
+                            <th>注文者電話</th>
+                            <th>注文者住所</th>
+                            <th>注文商品</th>
+                            <th>注文日付</th>
+                            <th>個数</th>
+                            <th>価格</th>
                         </tr>
-                        <% } %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id=tbodyList>
+                        <% for (let i=0; i < sample3.length; i++) { %>
+                            <tr class="trList">
+                                <td><%- sample3[i].注文者名 %></td>
+                                <td><%- sample3[i].注文者電話 %></td>
+                                <td><%- sample3[i].注文者住所 %></td>
+                                <td><%- sample3[i].注文商品 %></td>
+                                <td class="listTime"><%- sample3[i].注文日付 %></td>
+                                <td><%- sample3[i].個数 %></td>
+                                <td><%- sample3[i].価格 %></td>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
         </div>
         </div>
-    </div>
     </body>
 </html>
 <script type="text/javascript">
@@ -163,8 +163,6 @@
         this.style.display = 'none';
     });
 
-
-
     /**
      * カレンダーテーブルの作成
      */
@@ -247,6 +245,8 @@
         showCalendar(showDate);
     }
 
+
+//情報追加ページadd
     const updateView = () => {
         const pages = {
             "/add": `
@@ -279,102 +279,90 @@
         const render = page || `<h1>404 : Not Found<h1>`;
         document.getElementById("app").innerHTML = render;
 
-        //  window.history.pushState({ name: "taro" }, "", "/addlist");
-      
-        let listName1 = document.getElementById("listName1");
-        let listName2 = document.getElementById("listName2");
-        let listName3 = document.getElementById("listName3");
-        let listName4 = document.getElementById("listName4");
-        let listName5 = document.getElementById("listName5");
-        let listName6 = document.getElementById("listName6");
-        let listName7 = document.getElementById("listName7");
-            let newname1 = document.getElementById("newname1");
-            let newname2 = document.getElementById("newname2");
-            let newname3 = document.getElementById("newname3");
-            let newname4 = document.getElementById("newname4");
-            let newname5 = document.getElementById("newname5");
-            let newname6 = document.getElementById("newname6");
-            let newname7 = document.getElementById("newname7"); 
-            let trueFalse = true;
-         const form = document.getElementById("form")
-const submitButton = document.getElementById("submit-button")
-
-submitAfterValidation = () => {
-
+        const listName1 = document.getElementById("listName1");
+        const listName2 = document.getElementById("listName2");
+        const listName3 = document.getElementById("listName3");
+        const listName4 = document.getElementById("listName4");
+        const listName5 = document.getElementById("listName5");
+        const listName6 = document.getElementById("listName6");
+        const listName7 = document.getElementById("listName7");
+        const newname1 = document.getElementById("newname1");
+        const newname2 = document.getElementById("newname2");
+        const newname3 = document.getElementById("newname3");
+        const newname4 = document.getElementById("newname4");
+        const newname5 = document.getElementById("newname5");
+        const newname6 = document.getElementById("newname6");
+        const newname7 = document.getElementById("newname7");
+        let trueFalse = true;
+        const form = document.getElementById("form")
+        const submitButton = document.getElementById("submit-button")
+        submitAfterValidation = () => {
             if (newname1.value == "") {
                 listName1.innerHTML = "注文者名が未入力です";
                 listName1.style.color = "red";
-            return false
-            }else{
-                listName1.innerHTML = "";  
+                return false
+            } else {
+                listName1.innerHTML = "";
             }
-         if (newname2.value == "") {
+            if (newname2.value == "") {
                 listName2.innerHTML = "電話番号が未入力です"
                 listName2.style.color = "red"
-              return false
+                return false
             } else if (/^[0-9]*$/.test(newname2.value)) {
                 listName2.textContent = "";
             } else {
                 listName2.innerHTML = "半角数字で入力してください";
                 listName2.style.color = "red";
-              return false
+                return false
             }
-                if (newname3.value == "") {
-                  
+            if (newname3.value == "") {
+
                 listName3.innerHTML = "注文者住所が未入力です";
                 listName3.style.color = "red";
-              return false
-
-            }else{
-                listName3.innerHTML = "";  
+                return false
+            } else {
+                listName3.innerHTML = "";
             }
-            
             if (newname4.value == "") {
                 listName4.innerHTML = "注文日付が未入力です";
                 listName4.style.color = "red";
-              return false
-            }else{
-                listName4.innerHTML = "";  
+                return false
+            } else {
+                listName4.innerHTML = "";
             }
             if (newname5.value == "") {
                 listName5.innerHTML = "注文内容が未入力です";
                 listName5.style.color = "red";
-              return false
-            }else{
-                listName5.innerHTML = "";  
+                return false
+            } else {
+                listName5.innerHTML = "";
             }
             if (newname6.value == "") {
                 listName6.innerHTML = "個数が未入力です"
                 listName6.style.color = "red"
-              return false
+                return false
             } else if (/^[0-9]*$/.test(newname7.value)) {
                 listName6.textContent = "";
             } else {
                 listName6.innerHTML = "半角数字で入力してください";
                 listName6.style.color = "red";
-              return false
+                return false
             }
             if (newname7.value == "") {
                 listName7.innerHTML = "価格が未入力です"
                 listName7.style.color = "red"
-              return false
-           } else if (/^[0-9]*$/.test(newname7.value)) {
-               listName7.textContent = "";
-           } else {
-               listName7.innerHTML = "半角数字で入力してください";
-               listName7.style.color = "red";
-             return false
-           }
- 
-         //  return trueFalse;
+                return false
+            } else if (/^[0-9]*$/.test(newname7.value)) {
+                listName7.textContent = "";
+            } else {
+                listName7.innerHTML = "半角数字で入力してください";
+                listName7.style.color = "red";
+                return false
+            }
+            formname.submit();
+        }
+    }
 
-          formname.submit();
-   
-     }
-
-
-}
-    
     document.querySelectorAll("a").forEach(a => {
         a.onclick = event => {
             event.preventDefault();
@@ -382,12 +370,8 @@ submitAfterValidation = () => {
             updateView();
         };
     });
+
     window.addEventListener("popstate", () => {
         window.location.reload();
     });
-
-
-
-
-
 </script>
