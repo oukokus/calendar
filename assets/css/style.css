@@ -119,3 +119,8 @@ h2 {
 .calendar_tbl th{
   background-color: darkorange;
 }
+
+.pclass{
+  margin-top: 10px;
+  margin-bottom: 3px;
+}

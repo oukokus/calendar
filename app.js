@@ -24,35 +24,38 @@ app.get("/", (req, res) => {
   
   // ==========ここまでの範囲で書くようにしましょう。==========
   app.post("/", (req, res) => {
-    const sql = "INSERT INTO sample3 SET ?";
+    const sql = 'INSERT INTO sample3 SET ?'
     con.query(sql, req.body, function (err, result, fields) {
       if (err) throw err;
       console.log(result);
       res.redirect("/");
     });
   });
+  
 
-  app.get("/", (req, res) => {
-    const sql = "SELECT 注文者名 FROM world.sample3 ";
-    con.query(sql, [req.params.id], function (err, result, fields) {
-      if (err) throw err;
-      res.render("edit", {
-   
-      });
-    });
-  });
+
+ // app.get("/", (req, res) => {
+ //   res.sendFile(path.join(__dirname, "views/index.ejs"));
+ // });
+//
+ // app.get("/", (req, res) => {
+ //   const sql = "SELECT 注文者名 FROM world.sample3 ";
+ //   con.query(sql, [req.params.id], function (err, result, fields) {
+ //     if (err) throw err;
+ //     res.render("", {
+//
+ //     });
+ //   });
+ // });
 
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
     res.render("index", {
       users: result,
      sample3: result,
-        });
     });
+  });
+
+
 });
-
-
-
-
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

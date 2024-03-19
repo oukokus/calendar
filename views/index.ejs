@@ -9,129 +9,80 @@
         <link type="text/css" rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div id="app">
-            <h1>商品注文顧客管理システム</h1>
-            <div class="calendar_area">
-                <div class="calendar_header">
-                    <p id="year_month_label"></p>
-                    <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
-                    <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
-                </div>
-                <div id="calendar_body"></div>
-                <div id="modal" class="modal">
-                    <div class="modal-content">
-                        <table class="table">
-                            <thead id="reviewArea">
-                                <tr class="trClass">
-                                    <th>注文者名</th>
-                                    <th>注文者電話</th>
-                                    <th>注文者住所</th>
-                                    <th>注文商品</th>
-                                    <th>個数</th>
-                                    <th>価格</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbodyId">
-                                <% for (let i=0; i < sample3.length; i++) { %>
-                                    <tr class="tbodyTr">
-                                        <td class="name"><%- sample3[i].注文者名 %></td>
-                                        <td><%- sample3[i].注文者電話 %></td>
-                                        <td><%- sample3[i].注文者住所 %></td>
-                                        <td><%- sample3[i].注文商品 %></td>
-                                        <td class="time"><%- sample3[i].注文日付 %></td>
-                                        <td><%- sample3[i].個数 %></td>
-                                        <td><%- sample3[i].価格 %></td>
-                                    </tr>
-                                    <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <h1>商品注文顧客管理システム</h1>
+        <div id="app"> 
+        <div class="calendar_area">
+            <div class="calendar_header">
+                <p id="year_month_label"></p>
+                <button id="prev_month_btn" onClick="prev_month()"><i class="fas fa-angle-left"></i></button>
+                <button id="next_month_btn" onClick="next_month()"><i class="fas fa-angle-right"></i></button>
             </div>
-            <div id="list">
-                <table id="tableList">
-                    <h2>商品注文顧客管理リスト</h2>
-                    <button><a href="/add">情報追加</a></button>
-                    <thead>
-                        <tr>
-                            <th>注文者名</th>
-                            <th>注文者電話</th>
-                            <th>注文者住所</th>
-                            <th>注文商品</th>
-                            <th>注文日付</th>
-                            <th>個数</th>
-                            <th>価格</th>
-                        </tr>
-                    </thead>
-                    <tbody id=tbodyList>
-                        <% for (let i=0; i < sample3.length; i++) { %>
-                            <tr class="trList">
-                                <td><%- sample3[i].注文者名 %></td>
-                                <td><%- sample3[i].注文者電話 %></td>
-                                <td><%- sample3[i].注文者住所 %></td>
-                                <td><%- sample3[i].注文商品 %></td>
-                                <td class="listTime"><%- sample3[i].注文日付 %></td>
-                                <td><%- sample3[i].個数 %></td>
-                                <td><%- sample3[i].価格 %></td>
+            <div id="calendar_body"></div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <table class="table">
+                        <thead id="reviewArea">
+                            <tr class="trClass">
+                                <th>注文者名</th>
+                                <th>注文者電話</th>
+                                <th>注文者住所</th>
+                                <th>注文商品</th>
+                                <th>個数</th>
+                                <th>価格</th>
                             </tr>
-                            <% } %>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="tbodyId">
+                            <% for (let i=0; i < sample3.length; i++) { %>
+                                <tr class="tbodyTr">
+                                    <td class="name"><%- sample3[i].注文者名 %></td>
+                                    <td><%- sample3[i].注文者電話 %></td>
+                                    <td><%- sample3[i].注文者住所 %></td>
+                                    <td><%- sample3[i].注文商品 %></td>
+                                    <td class="time"><%- sample3[i].注文日付 %></td>
+                                    <td><%- sample3[i].個数 %></td>
+                                    <td><%- sample3[i].価格 %></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        <div id="list">
+            <table id="tableList">
+                <h2>商品注文顧客管理リスト</h2>
+                <button id="addBtn"><a href="/add">情報追加</a></button>
+                <thead>
+                    <tr>
+                        <th>注文者名</th>
+                        <th>注文者電話</th>
+                        <th>注文者住所</th>
+                        <th>注文商品</th>
+                        <th>注文日付</th>
+                        <th>個数</th>
+                        <th>価格</th>
+                    </tr>
+                </thead>
+                <tbody id=tbodyList>
+                    <% for (let i=0; i < sample3.length; i++) { %>
+                        <tr class="trList">
+                            <td><%- sample3[i].注文者名 %></td>
+                            <td><%- sample3[i].注文者電話 %></td>
+                            <td><%- sample3[i].注文者住所 %></td>
+                            <td><%- sample3[i].注文商品 %></td>
+                            <td class="listTime"><%- sample3[i].注文日付 %></td>
+                            <td><%- sample3[i].個数 %></td>
+                            <td><%- sample3[i].価格 %></td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
         </div>
+        </div>
+    </div>
     </body>
 </html>
 <script type="text/javascript">
-
-
-    const updateView = () => {
-        const pages = {
-            "/add": `
-    <h1>情報追加</h1>
-        <form action='/' id="newData" class="formData" method="POST">
-            <p id="pid1">注文者名:
-<input id="newname1" type="text" name="username"  placeholder="注文者名"></p>
-            <div id="listName1"></div>
-            <p>注文者電話番号 : 
-<input id="newname2" type="tel" name="tel" placeholder="注文者電話番号"></p>
-            <div id="listName2"></div>
-            <p>注文者住所 : 
-<input id="newname3" type="text" name="place"  placeholder="注文者住所"></p>
-            <p>注文商品 : 
-<input id="newname4" type="text" name="buy"  placeholder="注文商品"></p>
-                <p>個数 : 
-<input id="newname5" type="number" name="ad"  placeholder="個数"></p>
-                <p>価格の表示 : 
-<input id="newname6" type="price" name="price"  placeholder="価格の表示"></p>
-                
-            <p><button type="submit" onclick="return buttonClick()"  value="追加">追加</p>
-        </form>
-    `,
-        };
-const page = pages[window.location.pathname];
-  const render = page || `<h1>404 : Not Found<h1>`;
-  document.getElementById("app").innerHTML = render;
-       // document.getElementById("app").innerHTML = pages[window.location.pathname];
-     //  window.history.pushState({ name: "taro" }, "", "/addlist");
-    };
-  
-    document.querySelectorAll("a").forEach(a => {
-    a.onclick = event => {
-      event.preventDefault();
-      window.history.pushState(null, "", a.href);
-      updateView();
-    };
-  });
-  window.addEventListener("popstate", () => {
-    window.location.reload();
-
-  });
-
-  //ブラウザバックを監視
-
-
-
     // 曜日の定義
     const week = ["日", "月", "火", "水", "木", "金", "土"];
     // 今日の日付
@@ -167,7 +118,6 @@ const page = pages[window.location.pathname];
         let getTrList = document.querySelectorAll(".trList")
         let getTableList = document.querySelector('#tableList')
         let getListTime = document.querySelectorAll('.listTime')
-        console.log(getListTime)
         for (let i = 0; i < getListTime.length; i++) {
             getTrList[i].style.display = 'none';
             let listMonth1 = getListTime[i].innerHTML.slice(0, 7)
@@ -296,4 +246,148 @@ const page = pages[window.location.pathname];
         // カレンダーの表示（引数には表示用の日付を設定）
         showCalendar(showDate);
     }
+
+    const updateView = () => {
+        const pages = {
+            "/add": `
+    <h1>情報追加</h1>
+        <form id="form" name="formname" action='/' method="post" id="frm">
+            <p class="pclass">注文者名:
+<input id="newname1" type="text" name="注文者名"  placeholder="注文者名"></p>
+            <div id="listName1"></div>
+            <p class="pclass">注文者電話番号 : 
+<input id="newname2" type="tel" name="注文者電話" placeholder="注文者電話番号"></p>
+            <div id="listName2"></div>
+            <p class="pclass">注文者住所 : 
+<input id="newname3" type="text" name="注文者住所"  placeholder="注文者住所"></p>
+<div id="listName3"></div>
+<p class="pclass">注文日付 : 
+<input id="newname4" type="date" name='注文日付'  ></p>    
+<div id="listName4"></div>
+<p class="pclass">注文商品 : 
+<input id="newname5" type="text" name=注文商品  placeholder="注文商品"></p>
+<div id="listName5"></div> <p class="pclass">個数 : 
+<input id="newname6" type="number" name="個数"  placeholder="個数"></p>
+<div id="listName6"></div>      <p class="pclass">価格 : 
+<input id="newname7" type="price" name="価格"  placeholder="価格"></p>
+<div id="listName7"></div>     
+            <p class="pclass"><button id="submit-button"  onclick="return submitAfterValidation()">送信</button></p>
+        </form>
+    `,
+        };
+        const page = pages[window.location.pathname];
+        const render = page || `<h1>404 : Not Found<h1>`;
+        document.getElementById("app").innerHTML = render;
+
+        //  window.history.pushState({ name: "taro" }, "", "/addlist");
+      
+        let listName1 = document.getElementById("listName1");
+        let listName2 = document.getElementById("listName2");
+        let listName3 = document.getElementById("listName3");
+        let listName4 = document.getElementById("listName4");
+        let listName5 = document.getElementById("listName5");
+        let listName6 = document.getElementById("listName6");
+        let listName7 = document.getElementById("listName7");
+            let newname1 = document.getElementById("newname1");
+            let newname2 = document.getElementById("newname2");
+            let newname3 = document.getElementById("newname3");
+            let newname4 = document.getElementById("newname4");
+            let newname5 = document.getElementById("newname5");
+            let newname6 = document.getElementById("newname6");
+            let newname7 = document.getElementById("newname7"); 
+            let trueFalse = true;
+         const form = document.getElementById("form")
+const submitButton = document.getElementById("submit-button")
+
+submitAfterValidation = () => {
+
+            if (newname1.value == "") {
+                listName1.innerHTML = "注文者名が未入力です";
+                listName1.style.color = "red";
+            return false
+            }else{
+                listName1.innerHTML = "";  
+            }
+         if (newname2.value == "") {
+                listName2.innerHTML = "電話番号が未入力です"
+                listName2.style.color = "red"
+              return false
+            } else if (/^[0-9]*$/.test(newname2.value)) {
+                listName2.textContent = "";
+            } else {
+                listName2.innerHTML = "半角数字で入力してください";
+                listName2.style.color = "red";
+              return false
+            }
+                if (newname3.value == "") {
+                  
+                listName3.innerHTML = "注文者住所が未入力です";
+                listName3.style.color = "red";
+              return false
+
+            }else{
+                listName3.innerHTML = "";  
+            }
+            
+            if (newname4.value == "") {
+                listName4.innerHTML = "注文日付が未入力です";
+                listName4.style.color = "red";
+              return false
+            }else{
+                listName4.innerHTML = "";  
+            }
+            if (newname5.value == "") {
+                listName5.innerHTML = "注文内容が未入力です";
+                listName5.style.color = "red";
+              return false
+            }else{
+                listName5.innerHTML = "";  
+            }
+            if (newname6.value == "") {
+                listName6.innerHTML = "個数が未入力です"
+                listName6.style.color = "red"
+              return false
+            } else if (/^[0-9]*$/.test(newname7.value)) {
+                listName6.textContent = "";
+            } else {
+                listName6.innerHTML = "半角数字で入力してください";
+                listName6.style.color = "red";
+              return false
+            }
+            if (newname7.value == "") {
+                listName7.innerHTML = "価格が未入力です"
+                listName7.style.color = "red"
+              return false
+           } else if (/^[0-9]*$/.test(newname7.value)) {
+               listName7.textContent = "";
+           } else {
+               listName7.innerHTML = "半角数字で入力してください";
+               listName7.style.color = "red";
+             return false
+           }
+ 
+         //  return trueFalse;
+
+          formname.submit();
+   
+     }
+
+
+}
+    
+    document.querySelectorAll("a").forEach(a => {
+        a.onclick = event => {
+            event.preventDefault();
+            window.history.pushState(null, "", a.href);
+            updateView();
+        };
+    });
+    window.addEventListener("popstate", () => {
+        window.location.reload();
+    });
+
+
+
+
+
 </script>
