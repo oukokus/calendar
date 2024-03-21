@@ -133,7 +133,6 @@
             }
         }
 
-
         //カレンダーに表示
         let time = document.querySelectorAll(".time")
         let name = document.querySelectorAll(".name")
@@ -246,39 +245,38 @@
     }
 
 
-//情報追加ページadd
+    //情報追加ページadd
     const updateView = () => {
         const pages = {
             "/add": `
     <h1>情報追加</h1>
-        <form id="form" name="formname" action='/' method="post" id="frm">
+        <form id="form" name="formname"   onsubmit="return submitAfterValidation()"  action='/' method="post" id="frm">
             <p class="pclass">注文者名:
 <input id="newname1" type="text" name="注文者名"  placeholder="注文者名"></p>
-            <div id="listName1"></div>
+            <div id="listName1" class="dclass"></div>
             <p class="pclass">注文者電話番号 : 
 <input id="newname2" type="tel" name="注文者電話" placeholder="注文者電話番号"></p>
-            <div id="listName2"></div>
+            <div id="listName2" class="dclass"></div>
             <p class="pclass">注文者住所 : 
 <input id="newname3" type="text" name="注文者住所"  placeholder="注文者住所"></p>
-<div id="listName3"></div>
+<div id="listName3" class="dclass"></div>
 <p class="pclass">注文日付 : 
 <input id="newname4" type="date" name='注文日付'  ></p>    
-<div id="listName4"></div>
+<div id="listName4" class="dclass"></div>
 <p class="pclass">注文商品 : 
 <input id="newname5" type="text" name=注文商品  placeholder="注文商品"></p>
-<div id="listName5"></div> <p class="pclass">個数 : 
+<div id="listName5" class="dclass"></div> <p class="pclass">個数 : 
 <input id="newname6" type="number" name="個数"  placeholder="個数"></p>
-<div id="listName6"></div>      <p class="pclass">価格 : 
+<div id="listName6" class="dclass"></div>      <p class="pclass">価格 : 
 <input id="newname7" type="price" name="価格"  placeholder="価格"></p>
-<div id="listName7"></div>     
-            <p class="pclass"><button id="submit-button"  onclick="return submitAfterValidation()">送信</button></p>
+<div id="listName7" class="dclass"></div>     
+            <p class="pclass"><button id="submit-button"  >送信</button></p>
         </form>
     `,
         };
         const page = pages[window.location.pathname];
         const render = page || `<h1>404 : Not Found<h1>`;
         document.getElementById("app").innerHTML = render;
-
         const listName1 = document.getElementById("listName1");
         const listName2 = document.getElementById("listName2");
         const listName3 = document.getElementById("listName3");
@@ -293,6 +291,7 @@
         const newname5 = document.getElementById("newname5");
         const newname6 = document.getElementById("newname6");
         const newname7 = document.getElementById("newname7");
+        const dclass = document.querySelectorAll(".dclass")
         let trueFalse = true;
         const form = document.getElementById("form")
         const submitButton = document.getElementById("submit-button")
@@ -300,68 +299,73 @@
             if (newname1.value == "") {
                 listName1.innerHTML = "注文者名が未入力です";
                 listName1.style.color = "red";
-                return false
+                trueFalse = false;
             } else {
                 listName1.innerHTML = "";
             }
             if (newname2.value == "") {
                 listName2.innerHTML = "電話番号が未入力です"
                 listName2.style.color = "red"
-                return false
-            } else if (/^[0-9]*$/.test(newname2.value)) {
-                listName2.textContent = "";
+                trueFalse = false;
+            } else if (/^[0-9!-/:-@¥[-`{-~]*$/.test(newname2.value)) {
+                listName2.innerHTML = "";
             } else {
                 listName2.innerHTML = "半角数字で入力してください";
                 listName2.style.color = "red";
-                return false
+                trueFalse = false;
             }
             if (newname3.value == "") {
 
                 listName3.innerHTML = "注文者住所が未入力です";
                 listName3.style.color = "red";
-                return false
+                trueFalse = false;
             } else {
                 listName3.innerHTML = "";
             }
             if (newname4.value == "") {
                 listName4.innerHTML = "注文日付が未入力です";
                 listName4.style.color = "red";
-                return false
+                trueFalse = false;
             } else {
                 listName4.innerHTML = "";
             }
             if (newname5.value == "") {
                 listName5.innerHTML = "注文内容が未入力です";
                 listName5.style.color = "red";
-                return false
+                trueFalse = false;
             } else {
                 listName5.innerHTML = "";
             }
             if (newname6.value == "") {
                 listName6.innerHTML = "個数が未入力です"
                 listName6.style.color = "red"
-                return false
-            } else if (/^[0-9]*$/.test(newname7.value)) {
+                trueFalse = false;
+            } else if (/^[0-9]*$/.test(newname6.value)) {
                 listName6.textContent = "";
             } else {
                 listName6.innerHTML = "半角数字で入力してください";
                 listName6.style.color = "red";
-                return false
+                trueFalse = false;
             }
             if (newname7.value == "") {
                 listName7.innerHTML = "価格が未入力です"
                 listName7.style.color = "red"
-                return false
+                trueFalse = false;
             } else if (/^[0-9]*$/.test(newname7.value)) {
                 listName7.textContent = "";
+
             } else {
                 listName7.innerHTML = "半角数字で入力してください";
                 listName7.style.color = "red";
-                return false
+                trueFalse = false;
             }
-            formname.submit();
+            if (dclass[0].innerHTML == "" && dclass[1].innerHTML == "" && dclass[2].innerHTML == "" && dclass[3].innerHTML == "" && dclass[4].innerHTML == "" && dclass[5].innerHTML == "" && dclass[6].innerHTML == "") {
+                trueFalse = true;
+            }
+            return trueFalse
         }
     }
+
 
     document.querySelectorAll("a").forEach(a => {
         a.onclick = event => {
