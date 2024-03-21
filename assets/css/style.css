@@ -124,3 +124,23 @@ h2 {
   margin-top: 10px;
   margin-bottom: 3px;
 }
+
+
+h1{
+  text-align: center;
+  padding-top: 10px;
+}
+
+
+#addh1{
+  text-align: left;
+  padding-left: 10px;
+  color:blue;
+}
+
+
+#form{
+ width: 800px;
+  background-color: greenyellow;
+  padding: 10px;
+}
