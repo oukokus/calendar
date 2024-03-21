@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
   // cssファイルの取得
   app.use(express.static("assets"));
   const sql = "select * from sample3";
-  
+
   // ==========ここまでの範囲で書くようにしましょう。==========
   app.post("/", (req, res) => {
     const sql = 'INSERT INTO sample3 SET ?'
@@ -31,28 +31,12 @@ app.get("/", (req, res) => {
       res.redirect("/");
     });
   });
-  
-
-
- // app.get("/", (req, res) => {
- //   res.sendFile(path.join(__dirname, "views/index.ejs"));
- // });
-//
- // app.get("/", (req, res) => {
- //   const sql = "SELECT 注文者名 FROM world.sample3 ";
- //   con.query(sql, [req.params.id], function (err, result, fields) {
- //     if (err) throw err;
- //     res.render("", {
-//
- //     });
- //   });
- // });
 
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
     res.render("index", {
       users: result,
-     sample3: result,
+      sample3: result,
     });
   });
 
