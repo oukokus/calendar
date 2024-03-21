@@ -23,9 +23,10 @@ button#next_year_btn {
 }
 
 /* カレンダーテーブル */
-table.calendar_tbl,#tableList {
+table.calendar_tbl,
+#tableList {
   min-width: 1000px;
- 
+
   margin: 20px auto 0;
   border: 1px solid;
   border-collapse: collapse;
@@ -74,7 +75,7 @@ table.calendar_tbl tr td:last-child {
   color: #00f;
 }
 
-.modal{
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -94,17 +95,19 @@ table.calendar_tbl tr td:last-child {
   width: 80%;
 }
 
-.clBtn{
+.clBtn {
   width: 100px;
   background-color: yellow;
 }
 
-#table,th,td{
-border: 1px solid black;
-padding: 5px;
+#table,
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
 }
 
-th{
+th {
   width: 100px;
   background-color: skyblue;
 }
@@ -116,6 +119,28 @@ h2 {
 #list {
   margin: 50px 0;
 }
-.calendar_tbl th{
+.calendar_tbl th {
   background-color: darkorange;
+}
+
+.pclass {
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+#addh1 {
+  text-align: left;
+  padding-left: 10px;
+  color: blue;
+}
+
+#form {
+  width: 800px;
+  background-color: greenyellow;
+  padding: 10px;
 }
